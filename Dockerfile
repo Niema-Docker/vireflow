@@ -31,7 +31,7 @@ RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcfto
     make && \
     make install && \
     cd .. && \
-    rm -rf samtools-1.12
+    rm -rf bcftools-1.12
 
 # install Minimap2 v2.17
 RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
