@@ -42,3 +42,12 @@ RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar
     make install && \
     cd .. && \
     rm -rf ivar-1.3.1
+
+# install LoFreq v2.1.5
+RUN wget -qO- "https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5.tar.gz" | tar -zx && \
+    cd lofreq_star-2.1.5 && \
+    ./configure --with-htslib=/usr/local && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf lofreq_star-2.1.5
