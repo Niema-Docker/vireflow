@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev g++ make musl-dev python xz-dev zlib-dev
+    apk add autoconf automake bash bzip2-dev g++ make musl-dev python3 xz-dev zlib-dev
 
 # install htslib v1.12
 RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
