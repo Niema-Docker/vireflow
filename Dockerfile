@@ -24,6 +24,15 @@ RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samto
     cd .. && \
     rm -rf samtools-1.12
 
+# install bcftools v1.12
+RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2" | tar -xj && \
+    cd bcftools-1.12 && \
+    ./configure --without-curses && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf samtools-1.12
+
 # install Minimap2 v2.17
 RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
     cd minimap2-2.17 && \
