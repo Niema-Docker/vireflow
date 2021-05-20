@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev g++ make musl-dev python3 xz-dev zlib-dev
+    apk add autoconf automake bash bzip2-dev g++ make musl-dev perl python3 unzip xz-dev zlib-dev
 
 # install htslib v1.12
 RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
@@ -15,15 +15,6 @@ RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-
     cd .. && \
     rm -rf htslib-1.12
 
-# install samtools v1.12
-RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
-    cd samtools-1.12 && \
-    ./configure --without-curses && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -rf samtools-1.12
-
 # install bcftools v1.12
 RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2" | tar -xj && \
     cd bcftools-1.12 && \
@@ -33,14 +24,14 @@ RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcfto
     cd .. && \
     rm -rf bcftools-1.12
 
-# install Minimap2 v2.17
-RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
-    cd minimap2-2.17 && \
+# install Bowtie2 v2.4.3
+RUN wget "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.3/bowtie2-2.4.3-source.zip" && \
+    unzip bowtie2-2.4.3-source.zip && \
+    cd bowtie2-2.4.3 && \
     make && \
-    chmod a+x minimap2 && \
-    mv minimap2 /usr/local/bin/minimap2 && \
+    make install && \
     cd .. && \
-    rm -rf minimap2-2.17
+    rm -rf bowtie2-2.4.3 bowtie2-2.4.3-source.zip
 
 # install iVar v1.3.1
 RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
@@ -60,3 +51,21 @@ RUN wget -qO- "https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5.
     make install && \
     cd .. && \
     rm -rf lofreq_star-2.1.5
+
+# install Minimap2 v2.17
+RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
+    cd minimap2-2.17 && \
+    make && \
+    chmod a+x minimap2 && \
+    mv minimap2 /usr/local/bin/minimap2 && \
+    cd .. && \
+    rm -rf minimap2-2.17
+
+# install samtools v1.12
+RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
+    cd samtools-1.12 && \
+    ./configure --without-curses && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf samtools-1.12
