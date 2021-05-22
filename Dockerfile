@@ -66,6 +66,11 @@ RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" |
     cd .. && \
     rm -rf minimap2-2.17
 
+# install pi_from_pileup
+RUN wget "https://raw.githubusercontent.com/Niema-Docker/pi_from_pileup/main/pi_from_pileup.cpp" && \
+    g++ -O3 -o /usr/local/bin/pi_from_pileup pi_from_pileup.cpp && \
+    rm pi_from_pileup.cpp
+
 # install samtools v1.12
 RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
     cd samtools-1.12 && \
