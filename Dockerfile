@@ -52,6 +52,11 @@ RUN wget -qO- "https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5.
     cd .. && \
     rm -rf lofreq_star-2.1.5
 
+# install low_depth_regions
+RUN wget "https://raw.githubusercontent.com/Niema-Docker/low_depth_regions/main/low_depth_regions.cpp" && \
+    g++ -O3 -o /usr/local/bin/low_depth_regions low_depth_regions.cpp && \
+    rm low_depth_regions.cpp
+
 # install Minimap2 v2.17
 RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
     cd minimap2-2.17 && \
