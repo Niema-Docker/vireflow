@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev cmake curl-dev g++ gcc git libexecinfo-dev libtool make meson musl-dev perl perl-utils pkgconfig py3-pip python3 python3-dev unzip xz-dev yasm zlib-dev && \
+    apk add autoconf automake bash bzip2-dev cmake curl-dev g++ gcc git libexecinfo-dev libtool linux-headers make meson musl-dev perl perl-utils pkgconfig py3-pip python3 python3-dev unzip xz-dev yasm zlib-dev && \
     ln -s $(which python3) /usr/local/bin/python
 
 # install htslib v1.12
