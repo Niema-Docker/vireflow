@@ -4,7 +4,8 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev g++ make musl-dev perl python3 unzip xz-dev zlib-dev
+    apk add autoconf automake bash bzip2-dev g++ make musl-dev perl python3 unzip xz-dev zlib-dev && \
+    ln -s $(which python3) $(dirname "$(which python3)")/python
 
 # install htslib v1.12
 RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
@@ -23,6 +24,14 @@ RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcfto
     make install && \
     cd .. && \
     rm -rf bcftools-1.12
+
+# install bedtools v2.30.0
+RUN wget -qO- "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools-2.30.0.tar.gz" | tar -zx && \
+    cd bedtools2 && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf bedtools2
 
 # install Bowtie2 v2.4.3
 RUN wget "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.3/bowtie2-2.4.3-source.zip" && \
