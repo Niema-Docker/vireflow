@@ -142,6 +142,12 @@ RUN wget "https://raw.githubusercontent.com/Niema-Docker/pi_from_pileup/main/pi_
     g++ -O3 -o /usr/local/bin/pi_from_pileup pi_from_pileup.cpp && \
     rm pi_from_pileup.cpp
 
+# install PRINSEQ v0.20.4
+RUN wget -qO- "http://iweb.dl.sourceforge.net/project/prinseq/standalone/prinseq-lite-0.20.4.tar.gz" | tar -zx && \
+    chmod a+x prinseq-lite-*/*.pl && \
+    mv prinseq-lite-*/*.pl /usr/local/bin/ && \
+    rm -rf prinseq-lite-*
+
 # install samtools v1.12
 RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
     cd samtools-* && \
