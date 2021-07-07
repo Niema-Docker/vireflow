@@ -62,6 +62,14 @@ RUN wget -qO- "https://github.com/intel/isa-l/archive/refs/tags/v2.30.0.tar.gz" 
     pip install --no-cache-dir 'cutadapt==3.4' && \
     rm -rf isa-l-*
 
+# install fastp v0.20.1
+RUN wget -qO- "https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz" | tar -zx && \
+    cd fastp-0.20.1 && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf fastp-0.20.1
+
 # install iVar v1.3.1
 RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
     cd ivar-1.3.1 && \
