@@ -4,8 +4,8 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev g++ make musl-dev perl python3 unzip xz-dev zlib-dev && \
-    ln -s $(which python3) $(dirname "$(which python3)")/python
+    apk add autoconf automake bash bzip2-dev gcc g++ make musl-dev perl python3 unzip xz-dev zlib-dev && \
+    ln -s $(which python3) /usr/local/bin/python
 
 # install htslib v1.12
 RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
@@ -41,6 +41,15 @@ RUN wget "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.3/bowtie
     make install && \
     cd .. && \
     rm -rf bowtie2-2.4.3 bowtie2-2.4.3-source.zip
+
+# install BWA v0.7.17
+RUN wget -qO- "https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2" | tar -jx && \
+    cd bwa-0.7.17 && \
+    sed -i 's/const uint8_t rle_auxtab\[8\];/\/\/const uint8_t rle_auxtab\[8\];/g' rle.h && \
+    make && \
+    mv bwa /usr/local/bin/bwa && \
+    cd .. && \
+    rm -rf bwa-0.7.17
 
 # install iVar v1.3.1
 RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
