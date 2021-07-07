@@ -9,21 +9,21 @@ RUN apk update && \
 
 # install htslib v1.12
 RUN wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
-    cd htslib-1.12 && \
+    cd htslib-* && \
     ./configure && \
     make && \
     make install && \
     cd .. && \
-    rm -rf htslib-1.12
+    rm -rf htslib-*
 
 # install bcftools v1.12
 RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2" | tar -xj && \
-    cd bcftools-1.12 && \
+    cd bcftools-* && \
     ./configure --without-curses && \
     make && \
     make install && \
     cd .. && \
-    rm -rf bcftools-1.12
+    rm -rf bcftools-*
 
 # install bedtools v2.30.0
 RUN wget -qO- "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools-2.30.0.tar.gz" | tar -zx && \
@@ -35,21 +35,21 @@ RUN wget -qO- "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedt
 
 # install Bowtie2 v2.4.3
 RUN wget "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.3/bowtie2-2.4.3-source.zip" && \
-    unzip bowtie2-2.4.3-source.zip && \
+    unzip bowtie2-*-source.zip && \
     cd bowtie2-2.4.3 && \
     make && \
     make install && \
     cd .. && \
-    rm -rf bowtie2-2.4.3 bowtie2-2.4.3-source.zip
+    rm -rf bowtie2-*
 
 # install BWA v0.7.17
 RUN wget -qO- "https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2" | tar -jx && \
-    cd bwa-0.7.17 && \
+    cd bwa-* && \
     sed -i 's/const uint8_t rle_auxtab\[8\];/\/\/const uint8_t rle_auxtab\[8\];/g' rle.h && \
     make && \
     mv bwa /usr/local/bin/bwa && \
     cd .. && \
-    rm -rf bwa-0.7.17
+    rm -rf bwa-*
 
 # install Cutadapt v3.4
 RUN wget -qO- "https://github.com/intel/isa-l/archive/refs/tags/v2.30.0.tar.gz" | tar -zx && \
@@ -64,11 +64,11 @@ RUN wget -qO- "https://github.com/intel/isa-l/archive/refs/tags/v2.30.0.tar.gz" 
 
 # install fastp v0.20.1
 RUN wget -qO- "https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz" | tar -zx && \
-    cd fastp-0.20.1 && \
+    cd fastp-* && \
     make && \
     make install && \
     cd .. && \
-    rm -rf fastp-0.20.1
+    rm -rf fastp-*
 
 # install freebayes v1.3.5
 RUN git clone --recursive https://github.com/vcflib/vcflib.git --branch v1.0.2 && \
@@ -106,36 +106,36 @@ RUN git clone --recursive https://github.com/vcflib/vcflib.git --branch v1.0.2 &
 
 # install iVar v1.3.1
 RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
-    cd ivar-1.3.1 && \
+    cd ivar-* && \
     sh autogen.sh && \
     ./configure --disable-dependency-tracking && \
     make && \
     make install && \
     cd .. && \
-    rm -rf ivar-1.3.1
+    rm -rf ivar-*
 
 # install LoFreq v2.1.5
 RUN wget -qO- "https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5.tar.gz" | tar -zx && \
-    cd lofreq_star-2.1.5 && \
+    cd lofreq_star-* && \
     ./configure --with-htslib=/usr/local && \
     make && \
     make install && \
     cd .. && \
-    rm -rf lofreq_star-2.1.5
+    rm -rf lofreq_star-*
 
 # install low_depth_regions
 RUN wget "https://raw.githubusercontent.com/Niema-Docker/low_depth_regions/main/low_depth_regions.cpp" && \
     g++ -O3 -o /usr/local/bin/low_depth_regions low_depth_regions.cpp && \
     rm low_depth_regions.cpp
 
-# install Minimap2 v2.17
-RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.17.tar.gz" | tar -zx && \
-    cd minimap2-2.17 && \
+# install Minimap2 v2.21
+RUN wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.21.tar.gz" | tar -zx && \
+    cd minimap2-* && \
     make && \
     chmod a+x minimap2 && \
     mv minimap2 /usr/local/bin/minimap2 && \
     cd .. && \
-    rm -rf minimap2-2.17
+    rm -rf minimap2-*
 
 # install pi_from_pileup
 RUN wget "https://raw.githubusercontent.com/Niema-Docker/pi_from_pileup/main/pi_from_pileup.cpp" && \
@@ -144,9 +144,9 @@ RUN wget "https://raw.githubusercontent.com/Niema-Docker/pi_from_pileup/main/pi_
 
 # install samtools v1.12
 RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
-    cd samtools-1.12 && \
+    cd samtools-* && \
     ./configure --without-curses && \
     make && \
     make install && \
     cd .. && \
-    rm -rf samtools-1.12
+    rm -rf samtools-*
