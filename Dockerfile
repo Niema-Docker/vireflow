@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apk update && \
-    apk add autoconf automake bash bzip2-dev gcc g++ make musl-dev perl python3 unzip xz-dev zlib-dev && \
+    apk add autoconf automake bash bzip2-dev gcc g++ libtool make musl-dev perl py3-pip python3 python3-dev unzip xz-dev yasm zlib-dev && \
     ln -s $(which python3) /usr/local/bin/python
 
 # install htslib v1.12
@@ -50,6 +50,17 @@ RUN wget -qO- "https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.t
     mv bwa /usr/local/bin/bwa && \
     cd .. && \
     rm -rf bwa-0.7.17
+
+# install Cutadapt v3.4
+RUN wget -qO- "https://github.com/intel/isa-l/archive/refs/tags/v2.30.0.tar.gz" | tar -zx && \
+    cd isa-l-* && \
+    ./autogen.sh && \
+    ./configure && \
+    make && \
+    make install && \
+    cd .. && \
+    pip install --no-cache-dir 'cutadapt==3.4' && \
+    rm -rf isa-l-*
 
 # install iVar v1.3.1
 RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
