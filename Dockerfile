@@ -112,6 +112,8 @@ RUN wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar
     make && \
     make install && \
     cd .. && \
+    wget -O /usr/local/bin/ivar_variants_to_vcf.py "https://raw.githubusercontent.com/Niema-Docker/ivar/main/ivar_variants_to_vcf.py" && \
+    chmod a+x /usr/local/bin/ivar_variants_to_vcf.py && \
     rm -rf ivar-*
 
 # install LoFreq v2.1.5
