@@ -23,6 +23,8 @@ RUN wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcfto
     make && \
     make install && \
     cd .. && \
+    wget -O /usr/local/bin/alt_vars.py "https://raw.githubusercontent.com/Niema-Docker/bcftools/1.12_1.0/alt_vars.py" && \
+    chmod a+x /usr/local/bin/alt_vars.py && \
     rm -rf bcftools-*
 
 # install bedtools v2.30.0
