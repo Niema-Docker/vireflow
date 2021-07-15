@@ -164,6 +164,13 @@ RUN pip install --no-cache-dir 'pyfaidx==0.5.9.5' && \
     chmod a+x /usr/local/bin/Bed2Amplicon.py && \
     rm -rf pTrimmer-*
 
+# install samhead v1.0.0
+RUN wget -qO- "https://github.com/niemasd/samhead/archive/refs/tags/1.0.0.tar.gz" | tar -zx && \
+    cd samhead-* && \
+    g++ -Wall -pedantic -O3 -std=c++11 -o /usr/local/bin/samhead samhead.cpp && \
+    cd .. && \
+    rm -rf samhead-*
+
 # install samtools v1.12
 RUN wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
     cd samtools-* && \
