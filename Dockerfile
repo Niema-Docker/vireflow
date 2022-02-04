@@ -4,7 +4,8 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y g++ libbz2-dev libcurl4-openssl-dev liblzma-dev make wget zlib1g-dev
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y g++ libbz2-dev libcurl4-openssl-dev liblzma-dev make wget zlib1g-dev && \
+    ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
     wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
