@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -93,9 +93,6 @@ RUN apt-get update && apt-get -y upgrade && \
     cd ../.. && \
     git clone --recursive https://github.com/freebayes/freebayes.git --branch v1.3.5 && \
     cd freebayes && \
-    sed -i 7,17d src/SegfaultHandler.cpp && \
-    sed -i 's/__off64_t/off64_t/g' src/LargeFileSupport.h && \
-    sed -i 's/__off64_t/off64_t/g' vcflib/fastahack/LargeFileSupport.h && \
     meson build && \
     cd build && \
     ninja && \
