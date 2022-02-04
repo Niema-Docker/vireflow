@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y g++ libbz2-dev libcurl4-openssl-dev liblzma-dev make python3 wget zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y g++ libbz2-dev libcurl4-openssl-dev liblzma-dev make python3 unzip wget zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
