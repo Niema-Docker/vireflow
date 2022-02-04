@@ -47,7 +47,6 @@ RUN apt-get update && apt-get -y upgrade && \
     # install BWA v0.7.17
     wget -qO- "https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2" | tar -jx && \
     cd bwa-* && \
-    sed -i 's/const uint8_t rle_auxtab\[8\];/\/\/const uint8_t rle_auxtab\[8\];/g' rle.h && \
     make && \
     mv bwa /usr/local/bin/bwa && \
     cd .. && \
