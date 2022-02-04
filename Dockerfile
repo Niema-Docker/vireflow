@@ -145,19 +145,10 @@ RUN apt-get update && apt-get -y upgrade && \
     go build && \
     mv gofasta /usr/local/bin/gofasta && \
     cd .. && \
-    mkdir coinbrew && \
-    cd coinbrew && \
-    wget "https://raw.githubusercontent.com/coin-or/coinbrew/master/coinbrew" && \
-    chmod a+x coinbrew && \
-    ./coinbrew fetch Cbc@master && \
-    (./coinbrew build Cbc --tests none --prefix=/usr/local || true) && \
-    cd .. && \
-    rm /usr/lib/python3.8/site-packages/pulp/apis/../solverdir/cbc/linux/64/cbc && \
-    ln -s $(which cbc) /usr/lib/python3.8/site-packages/pulp/apis/../solverdir/cbc/linux/64/cbc && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangolin.git@v3.1.7' && \
     # disable UShER check (for now)
     sed -i 's/,"usher"]/]#,"usher"]/g' /usr/lib/python3.8/site-packages/pangolin/utils/dependency_checks.py && \
-    rm -rf coinbrew gofasta-* && \
+    rm -rf gofasta-* && \
 
     # install pi_from_pileup
     wget "https://raw.githubusercontent.com/Niema-Docker/pi_from_pileup/main/pi_from_pileup.cpp" && \
