@@ -147,7 +147,7 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangolin.git@v3.1.7' && \
     # disable UShER check (for now)
-    sed -i 's/,"usher"]/]#,"usher"]/g' /usr/lib/python3.8/site-packages/pangolin/utils/dependency_checks.py && \
+    sed -i 's/,"usher"]/]#,"usher"]/g' /usr/local/lib/python3.8/dist-packages/pangolin/utils/dependency_checks.py && \
     rm -rf gofasta-* && \
 
     # install pi_from_pileup
