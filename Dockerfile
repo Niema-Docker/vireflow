@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf g++ git libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make python3 python3-pip unzip wget yasm zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -87,7 +87,6 @@ RUN apt-get update && apt-get -y upgrade && \
     make && \
     make install && \
     cd ../.. && \
-    sed -i 's/__off64_t/off64_t/g' ../fastahack/LargeFileSupport.h && \
     cmake .. && \
     cmake --build . && \
     cmake --install . && \
