@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf g++ libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make python3 unzip wget yasm zip zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf g++ libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make python3 python3-pip unzip wget yasm zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -60,7 +60,7 @@ RUN apt-get update && apt-get -y upgrade && \
     make && \
     make install && \
     cd .. && \
-    pip install --no-cache-dir 'cutadapt==3.4' && \
+    pip3 install --no-cache-dir 'cutadapt==3.4' && \
     rm -rf isa-l-* && \
 
     # install fastp v0.20.1
@@ -141,12 +141,12 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf minimap2-* && \
 
     # install Pangolin v3.1.7
-    pip install --no-cache-dir 'wheel' && \
-    pip install --no-cache-dir 'biopython' 'joblib' 'PuLP' 'pysam' 'snakemake' && \
-    pip install --no-cache-dir 'git+https://github.com/cov-lineages/scorpio.git' && \
-    pip install --no-cache-dir 'git+https://github.com/cov-lineages/constellations.git' && \
-    pip install --no-cache-dir 'git+https://github.com/cov-lineages/pango-designation.git' && \
-    pip install --no-cache-dir 'git+https://github.com/cov-lineages/pangoLEARN.git' && \
+    pip3 install --no-cache-dir 'wheel' && \
+    pip3 install --no-cache-dir 'biopython' 'joblib' 'PuLP' 'pysam' 'snakemake' && \
+    pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/scorpio.git' && \
+    pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/constellations.git' && \
+    pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pango-designation.git' && \
+    pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangoLEARN.git' && \
     wget -qO- "https://github.com/cov-ert/gofasta/archive/refs/tags/v0.0.5.tar.gz" | tar -zx && \
     cd gofasta-* && \
     go build && \
@@ -161,7 +161,7 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     rm /usr/lib/python3.8/site-packages/pulp/apis/../solverdir/cbc/linux/64/cbc && \
     ln -s $(which cbc) /usr/lib/python3.8/site-packages/pulp/apis/../solverdir/cbc/linux/64/cbc && \
-    pip install --no-cache-dir 'git+https://github.com/cov-lineages/pangolin.git@v3.1.7' && \
+    pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangolin.git@v3.1.7' && \
     # disable UShER check (for now)
     sed -i 's/,"usher"]/]#,"usher"]/g' /usr/lib/python3.8/site-packages/pangolin/utils/dependency_checks.py && \
     rm -rf coinbrew gofasta-* && \
@@ -178,7 +178,7 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf prinseq-lite-* && \
 
     # install pTrimmer v1.3.4
-    pip install --no-cache-dir 'pyfaidx==0.5.9.5' && \
+    pip3 install --no-cache-dir 'pyfaidx==0.5.9.5' && \
     wget -qO- "https://github.com/DMU-lilab/pTrimmer/archive/refs/tags/V1.3.4.tar.gz" | tar -zx && \
     cd pTrimmer-* && \
     make && \
