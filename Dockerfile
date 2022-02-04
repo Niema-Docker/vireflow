@@ -77,7 +77,6 @@ RUN apt-get update && apt-get -y upgrade && \
     cd vcflib/build && \
     git clone --recursive https://github.com/ekg/tabixpp.git --branch v1.1.0 && \
     cd tabixpp && \
-    sed -i 's/-lbz2/-lbz2 -lcurl/g' Makefile && \
     make && \
     gcc tabix.o -shared -o libtabixpp.so && \
     mkdir -p /usr/local/lib && \
