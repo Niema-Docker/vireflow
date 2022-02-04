@@ -196,5 +196,17 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     rm -rf SPAdes-* && \
 
+    # install VirStrain v1.0
+    wget -qO- "https://github.com/liaoherui/VirStrain/archive/refs/tags/V1.0.tar.gz" | tar -zx && \
+    cd VirStrain-* && \
+    chmod 755 bin/jellyfish-linux && \
+    rm VirStrain_DB.tar.gz && \
+    wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
+    sed -i '1i #! /usr/bin/env python3' VirStrain.py && \
+    chmod a+x VirStrain.py && \
+    cd .. && \
+    mv VirStrain-* /usr/local/bin/VirStrain && \
+    ln -s /usr/local/bin/VirStrain/VirStrain.py /usr/local/bin/VirStrain.py && \
+
     # clean up
     rm -rf ~/.cache /tmp/*
