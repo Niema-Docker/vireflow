@@ -1,11 +1,10 @@
-# Minimal Docker image for ViReflow using Alpine base
-FROM alpine:3.13.5
+# Minimal Docker image for ViReflow using Ubuntu base
+FROM ubuntu:20.04
 MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
-RUN apk update && \
-    apk add autoconf automake bash blas-dev build-base bzip2-dev cmake curl-dev g++ gcc gfortran git go lapack-dev libexecinfo-dev libgfortran libtool linux-headers make meson musl-dev perl perl-utils pigz pkgconfig py3-pandas py3-pip py3-scikit-learn python3 python3-dev unzip xz-dev yasm zlib-dev && \
-    ln -s $(which python3) /usr/local/bin/python && \
+RUN apt-get update && apt-get -y upgrade && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y g++ libbz2-dev libcurl4-openssl-dev liblzma-dev make wget zlib1g-dev
 
     # install htslib v1.12
     wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
