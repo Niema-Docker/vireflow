@@ -135,7 +135,6 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf minimap2-* && \
 
     # install Pangolin v3.1.7
-    pip3 install --no-cache-dir 'wheel' && \
     pip3 install --no-cache-dir 'biopython' 'joblib' 'PuLP' 'pysam' 'snakemake' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/scorpio.git' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/constellations.git' && \
