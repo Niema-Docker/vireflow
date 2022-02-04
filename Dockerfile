@@ -199,6 +199,7 @@ RUN apt-get update && apt-get -y upgrade && \
     # install VirStrain v1.0
     pip3 install --no-cache-dir 'virstrain==1.10' && \
     wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
+    mv VirStrain_DB /usr/local/bin/VirStrain_DB && \
 
     # clean up
     rm -rf ~/.cache /tmp/*
