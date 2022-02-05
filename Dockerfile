@@ -197,7 +197,10 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf SPAdes-* && \
 
     # install VirStrain v1.0
-    pip3 install --no-cache-dir 'virstrain==1.10' && \
+    wget -qO- "https://github.com/liaoherui/VirStrain/archive/refs/tags/V1.0.tar.gz" | tar -zx && \
+    chmod 755 VirStrain-*/bin/jellyfish-linux && \
+    rm VirStrain-*/VirStrain_DB.tar.gz && \
+    mv VirStrain-* /usr/local/bin/VirStrain && \
     wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
     mv VirStrain_DB /usr/local/bin/VirStrain_DB && \
 
