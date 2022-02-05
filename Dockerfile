@@ -201,6 +201,9 @@ RUN apt-get update && apt-get -y upgrade && \
     chmod 755 VirStrain-*/bin/jellyfish-linux && \
     rm VirStrain-*/VirStrain_DB.tar.gz && \
     mv VirStrain-* /usr/local/bin/VirStrain && \
+    echo -e '#!/usr/bin/env bash\nargs=()\nfor a in "$@" ; do\n    if [[ -f "$a" ]] ; then\n        args+=("$(realpath $a)")\n    else\n        args+=("$a")\n    fi\ndone\ncd "$(dirname "$(readlink -f "$0")")"\npython3 VirStrain.py "${args[@]}"\n' > /usr/local/bin/VirStrain/virstrain && \
+    chmod a+x /usr/local/bin/VirStrain/virstrain && \
+    ln -s /usr/local/bin/VirStrain/virstrain /usr/local/bin/virstrain && \
     wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
     mv VirStrain_DB /usr/local/bin/VirStrain_DB && \
 
