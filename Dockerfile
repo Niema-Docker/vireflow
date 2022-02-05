@@ -197,13 +197,9 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf SPAdes-* && \
 
     # install VirStrain v1.0
-    wget -qO- "https://github.com/liaoherui/VirStrain/archive/refs/tags/V1.0.tar.gz" | tar -zx && \
-    chmod 755 VirStrain-*/bin/jellyfish-linux && \
-    rm VirStrain-*/VirStrain_DB.tar.gz && \
-    mv VirStrain-* /usr/local/bin/VirStrain && \
-    echo -e '#!/usr/bin/env bash\nargs=()\nfor a in "$@" ; do\n    if [[ -f "$a" ]] ; then\n        args+=("$(realpath $a)")\n    else\n        args+=("$a")\n    fi\ndone\ncd "$(dirname "$(readlink -f "$0")")"\npython3 VirStrain.py "${args[@]}"\n' > /usr/local/bin/VirStrain/virstrain && \
-    chmod a+x /usr/local/bin/VirStrain/virstrain && \
-    ln -s /usr/local/bin/VirStrain/virstrain /usr/local/bin/virstrain && \
+    pip3 install --no-cache-dir 'virstrain==1.10' && \
+    mkdir -p /usr/lib/python3/dist-packages/ && \
+    ln -s /usr/local/lib/python3.8/dist-packages/VirStrain /usr/lib/python3/dist-packages/VirStrain && \
     wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
     mv VirStrain_DB /usr/local/bin/VirStrain_DB && \
 
