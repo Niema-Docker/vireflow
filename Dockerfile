@@ -205,3 +205,5 @@ RUN apt-get update && apt-get -y upgrade && \
 
     # clean up
     rm -rf ~/.cache /tmp/*
+
+ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
