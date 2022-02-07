@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -200,6 +200,7 @@ RUN apt-get update && apt-get -y upgrade && \
     pip3 install --no-cache-dir 'virstrain==1.10' && \
     mkdir -p /usr/lib/python3/dist-packages/ && \
     ln -s /usr/local/lib/python3.8/dist-packages/VirStrain /usr/lib/python3/dist-packages/VirStrain && \
+    # TODO the following no longer works because of GitHub LFS stuff the authors are doing. Need to find alternative way to get VirStrain_DB.tar.gz
     wget -qO- "https://github.com/liaoherui/VirStrain/raw/main/VirStrain_DB.tar.gz" | tar -zx && \
     mv VirStrain_DB /usr/local/bin/VirStrain_DB && \
 
