@@ -129,7 +129,7 @@ RUN apt-get update && apt-get -y upgrade && \
     # install minia v0.0.102
     wget -qO- "https://github.com/GATB/minia/releases/download/v0.0.102/minia-v0.0.102-bin-Linux.tar.gz" | tar -zx && \
     mv minia-*/bin/* /usr/local/bin/ && \
-    mv minia-*/lib/libhd5.settings /usr/local/lib/ && \
+    mv minia-*/lib/libhdf5.settings /usr/local/lib/ && \
     mkdir -p /usr/local/lib/pkgconfig && \
     mv minia-*/lib/pkgconfig/* /usr/local/lib/pkgconfig/ && \
     rm -rf minia-* && \
