@@ -8,8 +8,8 @@ RUN apt-get update && apt-get -y upgrade && \
     apt-get install -y autoconf g++ make pigz python3 python3-pip wget unzip && \
     ln -s $(which python3) /usr/local/bin/python && \
 
-    # install htslib v1.12
-    wget -qO- "https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2" | tar -xj && \
+    # install htslib v1.14
+    wget -qO- "https://github.com/samtools/htslib/releases/download/1.14/htslib-1.14.tar.bz2" | tar -xj && \
     cd htslib-* && \
     ./configure && \
     make && \
@@ -17,14 +17,14 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     rm -rf htslib-* && \
 
-    # install bcftools v1.12
-    wget -qO- "https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2" | tar -xj && \
+    # install bcftools v1.14
+    wget -qO- "https://github.com/samtools/bcftools/releases/download/1.14/bcftools-1.14.tar.bz2" | tar -xj && \
     cd bcftools-* && \
     ./configure --without-curses && \
     make && \
     make install && \
     cd .. && \
-    wget -O /usr/local/bin/alt_vars.py "https://raw.githubusercontent.com/Niema-Docker/bcftools/1.12_1.0/alt_vars.py" && \
+    wget -O /usr/local/bin/alt_vars.py "https://github.com/Niema-Docker/bcftools/raw/main/alt_vars.py" && \
     chmod a+x /usr/local/bin/alt_vars.py && \
     rm -rf bcftools-* && \
 
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get -y upgrade && \
     mv ncbi-blast-*/bin/* /usr/local/bin/ && \
     rm -rf ncbi-blast-* && \
 
-    # install Bowtie2 v2.4.3
+    # install Bowtie2 v2.4.5
     wget -q "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.5/bowtie2-2.4.5-linux-x86_64.zip" && \
     unzip bowtie2-*.zip && \
     mv bowtie2-*/bowtie2* /usr/local/bin/ && \
@@ -152,8 +152,8 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     rm -rf samhead-* && \
 
-    # install samtools v1.12
-    wget -qO- "https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2" | tar -xj && \
+    # install samtools v1.14
+    wget -qO- "https://github.com/samtools/samtools/releases/download/1.14/samtools-1.14.tar.bz2" | tar -xj && \
     cd samtools-* && \
     ./configure --without-curses && \
     make && \
@@ -161,11 +161,10 @@ RUN apt-get update && apt-get -y upgrade && \
     cd .. && \
     rm -rf samtools-* && \
     
-    # install SPAdes v3.15.2
-    wget -qO- "https://github.com/ablab/spades/releases/download/v3.15.2/SPAdes-3.15.2.tar.gz" | tar -zx && \
-    cd SPAdes-* && \
-    PREFIX=/usr/local ./spades_compile.sh && \
-    cd .. && \
+    # install SPAdes v3.15.3
+    wget -qO- "https://github.com/ablab/spades/releases/download/v3.15.3/SPAdes-3.15.3-Linux.tar.gz" | tar -zx && \
+    mv SPAdes-*/bin/* /usr/local/bin/ && \
+    mv SPAdes-*/share/* /usr/local/share/ && \
     rm -rf SPAdes-* && \
 
     # install Unicycler v0.5.0
