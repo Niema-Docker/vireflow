@@ -4,7 +4,8 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake gcc-10 g++ g++-10 git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    #DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake gcc-10 g++ g++-10 git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    apt-get install -y g++ make pigz python3 python3-pip wget unzip && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -37,12 +38,9 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf ncbi-blast-* && \
 
     # install Bowtie2 v2.4.3
-    wget "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.3/bowtie2-2.4.3-source.zip" && \
-    unzip bowtie2-*-source.zip && \
-    cd bowtie2-2.4.3 && \
-    make && \
-    make install && \
-    cd .. && \
+    wget -q "https://github.com/BenLangmead/bowtie2/releases/download/v2.4.5/bowtie2-2.4.5-linux-x86_64.zip" && \
+    unzip bowtie2-*.zip && \
+    mv bowtie2-*/bowtie2* /usr/local/bin/ && \
     rm -rf bowtie2-* && \
 
     # install BWA v0.7.17
