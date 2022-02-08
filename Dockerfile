@@ -28,12 +28,8 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf bcftools-* && \
 
     # install bedtools v2.30.0
-    wget -qO- "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools-2.30.0.tar.gz" | tar -zx && \
-    cd bedtools2 && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -rf bedtools2 && \
+    wget -q -O /usr/local/bin/bedtools "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools.static.binary" && \
+    chmod a+x /usr/local/bin/bedtools && \
 
     # install BLAST+ v2.12.0
     wget -qO- "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-src.tar.gz" | tar -zx && \
