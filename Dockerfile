@@ -126,6 +126,13 @@ RUN apt-get update && apt-get -y upgrade && \
     g++ -O3 -o /usr/local/bin/low_depth_regions low_depth_regions.cpp && \
     rm low_depth_regions.cpp && \
 
+    # install minia v0.0.102
+    wget -qO- "https://github.com/GATB/minia/releases/download/v0.0.102/minia-v0.0.102-bin-Linux.tar.gz" | tar -zx && \
+    mv minia-*/bin/* /usr/local/bin/ && \
+    mv minia-*/lib/libhd5.settings /usr/local/lib/ && \
+    mkdir -p /usr/local/lib/pkgconfig && \
+    mv minia-*/lib/pkgconfig/* /usr/local/lib/pkgconfig/ && \
+
     # install Minimap2 v2.21
     wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.21.tar.gz" | tar -zx && \
     cd minimap2-* && \
