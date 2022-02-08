@@ -32,12 +32,8 @@ RUN apt-get update && apt-get -y upgrade && \
     chmod a+x /usr/local/bin/bedtools && \
 
     # install BLAST+ v2.12.0
-    wget -qO- "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-src.tar.gz" | tar -zx && \
-    cd ncbi-blast-*/c++ && \
-    ./configure && \
-    make && \
-    make install && \
-    cd ../.. && \
+    wget -qO- "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-x64-linux.tar.gz" | tar -zx && \
+    mv ncbi-blast-*/bin/* /usr/local/bin/ && \
     rm -rf ncbi-blast-* && \
 
     # install Bowtie2 v2.4.3
