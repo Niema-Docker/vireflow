@@ -132,6 +132,7 @@ RUN apt-get update && apt-get -y upgrade && \
     mv minia-*/lib/libhd5.settings /usr/local/lib/ && \
     mkdir -p /usr/local/lib/pkgconfig && \
     mv minia-*/lib/pkgconfig/* /usr/local/lib/pkgconfig/ && \
+    rm -rf minia-* && \
 
     # install Minimap2 v2.21
     wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.21.tar.gz" | tar -zx && \
