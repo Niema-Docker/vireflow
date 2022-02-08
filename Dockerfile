@@ -66,34 +66,9 @@ RUN apt-get update && apt-get -y upgrade && \
     wget -q -O /usr/local/bin/fastp "http://opengene.org/fastp/fastp.0.23.2" && \
     chmod a+x /usr/local/bin/fastp && \
 
-    # install freebayes v1.3.5
-    git clone --recursive https://github.com/vcflib/vcflib.git --branch v1.0.2 && \
-    mkdir -p vcflib/build && \
-    cd vcflib/build && \
-    git clone --recursive https://github.com/ekg/tabixpp.git --branch v1.1.0 && \
-    cd tabixpp && \
-    make && \
-    gcc tabix.o -shared -o libtabixpp.so && \
-    mkdir -p /usr/local/lib && \
-    install -p -m 644 libtabixpp.so /usr/local/lib/ && \
-    mkdir -p /usr/local/include && \
-    install -p -m 644 tabix.hpp /usr/local/include/ && \
-    cd htslib && \
-    make && \
-    make install && \
-    cd ../.. && \
-    cmake .. && \
-    cmake --build . && \
-    cmake --install . && \
-    cd ../.. && \
-    git clone --recursive https://github.com/freebayes/freebayes.git --branch v1.3.5 && \
-    cd freebayes && \
-    meson build && \
-    cd build && \
-    ninja && \
-    mv bamleftalign freebayes /usr/local/bin/ && \
-    cd ../.. && \
-    rm -rf freebayes vcflib && \
+    # install freebayes v1.3.6
+    wget -qO- "https://github.com/freebayes/freebayes/releases/download/v1.3.6/freebayes-1.3.6-linux-amd64-static.gz" | gunzip > /usr/local/bin/freebayes && \
+    chmod a+x /usr/local/bin/freebayes && \
 
     # install iVar v1.3.1
     wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
