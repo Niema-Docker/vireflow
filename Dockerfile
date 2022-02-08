@@ -62,8 +62,8 @@ RUN apt-get update && apt-get -y upgrade && \
     pip3 install --no-cache-dir 'cutadapt==3.4' && \
     rm -rf isa-l-* && \
 
-    # install fastp v0.20.1
-    wget -qO- "https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz" | tar -zx && \
+    # install fastp v0.23.2
+    wget -qO- "https://github.com/OpenGene/fastp/archive/refs/tags/v0.23.2.tar.gz" | tar -zx && \
     cd fastp-* && \
     make && \
     make install && \
