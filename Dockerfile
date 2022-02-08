@@ -104,12 +104,9 @@ RUN apt-get update && apt-get -y upgrade && \
     mv minia-*/lib/pkgconfig/* /usr/local/lib/pkgconfig/ && \
     rm -rf minia-* && \
 
-    # install Minimap2 v2.21
-    wget -qO- "https://github.com/lh3/minimap2/archive/refs/tags/v2.21.tar.gz" | tar -zx && \
-    cd minimap2-* && \
-    make && \
-    mv minimap2 /usr/local/bin/minimap2 && \
-    cd .. && \
+    # install Minimap2 v2.24
+    wget -qO- "https://github.com/lh3/minimap2/releases/download/v2.24/minimap2-2.24_x64-linux.tar.bz2" | tar -xj && \
+    mv minimap2-*/minimap2 /usr/local/bin/minimap2 && \
     rm -rf minimap2-* && \
 
     # install Pangolin v3.1.7
