@@ -110,16 +110,13 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf minimap2-* && \
 
     # install Pangolin v3.1.7
+    wget -q -O /usr/local/bin/gofasta "https://github.com/virus-evolution/gofasta/releases/download/v1.0.0/gofasta-linux-amd64" && \
+    chmod a+x /usr/local/bin/gofasta && \
     pip3 install --no-cache-dir 'biopython' 'joblib' 'PuLP' 'pysam' 'snakemake' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/scorpio.git' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/constellations.git' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pango-designation.git' && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangoLEARN.git' && \
-    wget -qO- "https://github.com/cov-ert/gofasta/archive/refs/tags/v0.0.5.tar.gz" | tar -zx && \
-    cd gofasta-* && \
-    go build && \
-    mv gofasta /usr/local/bin/gofasta && \
-    cd .. && \
     pip3 install --no-cache-dir 'git+https://github.com/cov-lineages/pangolin.git@v3.1.7' && \
     # disable UShER check (for now)
     sed -i 's/,"usher"]/]#,"usher"]/g' /usr/local/lib/python3.8/dist-packages/pangolin/utils/dependency_checks.py && \
