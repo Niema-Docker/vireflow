@@ -63,12 +63,8 @@ RUN apt-get update && apt-get -y upgrade && \
     rm -rf isa-l-* && \
 
     # install fastp v0.23.2
-    wget -qO- "https://github.com/OpenGene/fastp/archive/refs/tags/v0.23.2.tar.gz" | tar -zx && \
-    cd fastp-* && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -rf fastp-* && \
+    wget -q -O /usr/local/bin/fastp "http://opengene.org/fastp/fastp.0.23.2" && \
+    chmod a+x /usr/local/bin/fastp && \
 
     # install freebayes v1.3.5
     git clone --recursive https://github.com/vcflib/vcflib.git --branch v1.0.2 && \
