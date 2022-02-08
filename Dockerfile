@@ -4,7 +4,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 
 # install dependencies
 RUN apt-get update && apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake g++ git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake gcc-10 g++ g++-10 git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.12
@@ -203,6 +203,13 @@ RUN apt-get update && apt-get -y upgrade && \
     PREFIX=/usr/local ./spades_compile.sh && \
     cd .. && \
     rm -rf SPAdes-* && \
+
+    # install Unicycler v0.5.0
+    wget -qO- "https://github.com/rrwick/Unicycler/archive/refs/tags/v0.5.0.tar.gz" | tar -zx && \
+    cd Unicycler-* && \
+    python3 setup.py install --makeargs "CXX=g++-10" && \
+    cd .. && \
+    rm -rf Unicycler-* && \
 
     # install VirStrain v1.0
     pip3 install --no-cache-dir 'virstrain==1.10' && \
