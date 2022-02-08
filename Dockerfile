@@ -5,7 +5,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 # install dependencies
 RUN apt-get -qq update && apt-get -qq -y upgrade && \
     #DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y autoconf cmake gcc-10 g++ g++-10 git git-lfs golang libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make meson pigz pkg-config python3 python3-pip unzip wget yasm zip zlib1g-dev && \
-    apt-get -qq install -y autoconf g++ libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make pigz python3 python3-pip wget unzip yasm zlib1g-dev && \
+    apt-get -qq install -y autoconf g++ git libbz2-dev libcurl4-openssl-dev liblzma-dev libtool make pigz python3 python3-pip wget unzip yasm zlib1g-dev && \
     ln -s $(which python3) /usr/local/bin/python && \
 
     # install htslib v1.14
