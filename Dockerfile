@@ -185,7 +185,7 @@ RUN apt-get -qq update && apt-get -qq -y upgrade && \
     cd .. && \
     rm -rf Unicycler-* && \
 
-    # install VirStrain v1.0
+    # install VirStrain v1.10
     pip3 install --no-cache-dir 'virstrain==1.10' && \
     mkdir -p /usr/lib/python3/dist-packages/ && \
     ln -s /usr/local/lib/python3.8/dist-packages/VirStrain /usr/lib/python3/dist-packages/VirStrain && \
