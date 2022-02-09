@@ -69,6 +69,12 @@ RUN apt-get -qq update && apt-get -qq -y upgrade && \
     wget -qO- "https://github.com/freebayes/freebayes/releases/download/v1.3.6/freebayes-1.3.6-linux-amd64-static.gz" | gunzip > /usr/local/bin/freebayes && \
     chmod a+x /usr/local/bin/freebayes && \
 
+    # install HISAT2 v2.2.1
+    wget -q -O hisat2.zip "https://cloud.biohpc.swmed.edu/index.php/s/oTtGWbWjaxsQ2Ho/download" && \
+    unzip hisat2.zip && \
+    mv hisat2-*/extract* hisat2-*/hisat2* hisat2-*/scripts /usr/local/bin/ && \
+    rm -rf hisat2* && \
+
     # install iVar v1.3.1
     wget -qO- "https://github.com/andersen-lab/ivar/archive/refs/tags/v1.3.1.tar.gz" | tar -zx && \
     cd ivar-* && \
