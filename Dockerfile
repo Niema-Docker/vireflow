@@ -95,6 +95,12 @@ RUN apt-get -qq update && apt-get -qq -y upgrade && \
     g++ -O3 -o /usr/local/bin/low_depth_regions low_depth_regions.cpp && \
     rm low_depth_regions.cpp && \
 
+    # install MEGAHIT v1.2.9
+    wget -qO- "https://github.com/voutcn/megahit/releases/download/v1.2.9/MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz" | tar -zx && \
+    mv MEGAHIT-*/bin/* /usr/local/bin/ && \
+    mv MEGAHIT-*/share/* /usr/local/share/ && \
+    rm -rf MEGAHIT-* && \
+
     # install minia v0.0.102
     wget -qO- "https://github.com/GATB/minia/releases/download/v0.0.102/minia-v0.0.102-bin-Linux.tar.gz" | tar -zx && \
     mv minia-*/bin/* /usr/local/bin/ && \
