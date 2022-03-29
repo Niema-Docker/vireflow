@@ -31,8 +31,8 @@ RUN apt-get -qq update && apt-get -qq -y upgrade && \
     wget -q -O /usr/local/bin/bedtools "https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools.static.binary" && \
     chmod a+x /usr/local/bin/bedtools && \
 
-    # install BLAST+ v2.12.0
-    wget -qO- "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-x64-linux.tar.gz" | tar -zx && \
+    # install BLAST+ v2.13.0
+    wget -qO- "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/ncbi-blast-2.13.0+-x64-linux.tar.gz" | tar -zx && \
     mv ncbi-blast-*/bin/* /usr/local/bin/ && \
     rm -rf ncbi-blast-* && \
 
